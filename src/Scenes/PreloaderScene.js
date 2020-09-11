@@ -1,4 +1,4 @@
-import 'phaser';
+import Phaser from 'phaser';
 
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
@@ -9,7 +9,7 @@ export default class PreloaderScene extends Phaser.Scene {
     this.readyCount = 0;
   }
 
-  prelaod() {
+  preload() {
     this.add.image(400, 200, 'logo');
 
     const progressBar = this.add.graphics();
@@ -81,18 +81,19 @@ export default class PreloaderScene extends Phaser.Scene {
     this.timedEvent = this.time.delayedCall(3000, this.ready, [], this);
 
     // load assets needed in our game
-    this.load.image('yellowButton', 'assets/ui/yellow-button.png');
-    this.load.image('leaderboard', 'assets/ui/leaderboard.png');
-    this.load.image('pause', 'assets/ui/pause.png');
-    this.load.image('play', 'assets/ui/play-now.png');
-    this.load.image('settings', 'assets/ui/settings.png');
-    this.load.audio('bgMusic', ['assets/audio/TownTheme.mp3']);
+    this.load.image('yellowButton', '../src/assets/ui/yellow-button2.png');
+    this.load.image('leaderboard', '../src/assets/ui/leaderboard.png');
+    this.load.image('pause', '../src/assets/ui/pause.png');
+    this.load.image('play', '../src/assets/ui/play-now.png');
+    this.load.image('settings', '../src/assets/ui/settings.png');
+    this.load.audio('bgMusic', ['../src/assets/audio/TownTheme.mp3']);
   }
 
   ready() {
     this.scene.start('Title');
     if (this.ready.count === 2) {
       this.scene.start('Title');
+      console.log('preload');
     }
   }
 }
