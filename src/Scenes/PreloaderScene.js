@@ -87,6 +87,11 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('play', '../src/assets/ui/play-now.png');
     this.load.image('settings', '../src/assets/ui/settings.png');
     this.load.audio('bgMusic', ['../src/assets/audio/TownTheme.mp3']);
+
+    this.load.spritesheet('man', '../src/assets/spritesheets/old-man.png', {
+      frameWidth: 256,
+      frameHeight: 256,
+    });
   }
 
   ready() {
