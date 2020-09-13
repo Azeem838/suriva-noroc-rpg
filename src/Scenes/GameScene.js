@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import PlayerSprite from '../Sprites/PlayerSprite';
+import Beam from '../Sprites/Beam';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -44,6 +45,11 @@ export default class GameScene extends Phaser.Scene {
     this.load.image('mushroom', '../src/assets/images/mushroom.png');
 
     this.load.tilemapTiledJSON('world', '../src/assets/maps/world.json');
+
+    this.load.spritesheet('beam', '../src/assets/spritesheets/beam.png', {
+      frameWidth: 16,
+      frameHeight: 16,
+    });
   }
 
   create() {
@@ -51,7 +57,7 @@ export default class GameScene extends Phaser.Scene {
     this.man.setSize(150, 210).setOffset(50, 20);
     this.man.setCollideWorldBounds(true);
 
-    this.keyboard = this.input.keyboard.addKeys('W, A, S, D');
+    this.keyboard = this.input.keyboard.addKeys('W, A, S, D, SPACE');
 
     const world = this.add.tilemap('world');
 
@@ -79,6 +85,14 @@ export default class GameScene extends Phaser.Scene {
       obj.body.height = object.height;
     });
 
+    this.physics.add.overlap(
+      this.man,
+      mushrooms,
+      this.restoreHealth,
+      null,
+      this,
+    );
+
     this.cameras.main.startFollow(this.man);
     this.physics.world.setBounds(
       0,
@@ -86,23 +100,38 @@ export default class GameScene extends Phaser.Scene {
       world.widthInPixels,
       world.heightInPixels,
     );
+
+    this.projectiles = this.add.group();
+
+    this.anims.create({
+      key: 'beam',
+      frames: this.anims.generateFrameNumbers('beam'),
+      frameRate: 20,
+      repeat: -1,
+    });
   }
 
   update(time, delta) {
+    let angle;
+
     if (this.keyboard.D.isDown === true) {
       this.man.setVelocityX(128);
+      angle = 'right';
     }
 
     if (this.keyboard.A.isDown === true) {
       this.man.setVelocityX(-128);
+      angle = 'left';
     }
 
     if (this.keyboard.W.isDown === true) {
       this.man.setVelocityY(-128);
+      angle = 'up';
     }
 
     if (this.keyboard.S.isDown === true) {
       this.man.setVelocityY(128);
+      angle = 'down';
     }
 
     if (this.keyboard.A.isUp && this.keyboard.D.isUp) {
@@ -122,5 +151,24 @@ export default class GameScene extends Phaser.Scene {
     } else if (this.man.body.velocity.y > 0) {
       this.man.play('down', true);
     }
+
+    if (this.keyboard.SPACE.isDown) {
+      this.shootBeam(angle);
+    }
+
+    for (let i = 0; i < this.projectiles.getChildren().length; i += 1) {
+      const beam = this.projectiles.getChildren()[i];
+      beam.update();
+    }
+  }
+
+  restoreHealth(man, obj) {
+    this.man.hp += 5;
+    console.log(this.man.hp);
+    obj.destroy();
+  }
+
+  shootBeam(angle) {
+    const beam = new Beam(this, angle);
   }
 }
