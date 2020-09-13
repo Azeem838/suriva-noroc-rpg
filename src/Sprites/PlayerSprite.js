@@ -5,7 +5,7 @@ export default class PlayerSprite extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, texture, frame);
     scene.sys.updateList.add(this);
     scene.sys.displayList.add(this);
-    this.setScale(0.5);
+    this.setScale(0.35);
 
     scene.physics.world.enableBody(this);
     this.hp = 100;

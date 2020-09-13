@@ -6,14 +6,23 @@ const DEFAULT_HEIGHT = 600;
 export default {
   type: Phaser.AUTO,
   parent: 'phaser-game',
-  mode: Phaser.Scale.FIT,
-  autoCenter: Phaser.Scale.CENTER_BOTH,
+
   width: DEFAULT_WIDTH,
   height: DEFAULT_HEIGHT,
+
+  render: {
+    pixelArt: true,
+  },
+
   physics: {
     default: 'arcade',
     arcade: {
       debug: true,
     },
+  },
+
+  scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
   },
 };

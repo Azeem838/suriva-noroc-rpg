@@ -12,3 +12,6 @@ node_modules/
 # Build
 dist/
 /npm-debug.log
+
+# unnecessary images
+src/assets/images/terrain-atlas-cut
