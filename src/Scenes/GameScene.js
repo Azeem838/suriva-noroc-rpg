@@ -5,6 +5,7 @@ import Beam from '../Sprites/Beam';
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super('Game');
+    this.angle = 'down';
   }
 
   preload() {
@@ -77,21 +78,14 @@ export default class GameScene extends Phaser.Scene {
       (obj) => obj.gid === 1019 && obj.properties,
     );
 
-    const mushrooms = this.physics.add.staticGroup();
+    this.mushrooms = this.physics.add.staticGroup();
 
     mushroomLayer.forEach((object) => {
-      const obj = mushrooms.create(object.x, object.y, 'mushroom');
+      const obj = this.mushrooms.create(object.x, object.y, 'mushroom');
+      obj.properties = object.properties;
       obj.body.width = object.width;
       obj.body.height = object.height;
     });
-
-    this.physics.add.overlap(
-      this.man,
-      mushrooms,
-      this.restoreHealth,
-      null,
-      this,
-    );
 
     this.cameras.main.startFollow(this.man);
     this.physics.world.setBounds(
@@ -112,26 +106,32 @@ export default class GameScene extends Phaser.Scene {
   }
 
   update(time, delta) {
-    let angle;
+    this.physics.overlap(
+      this.man,
+      this.mushrooms,
+      this.restoreHealth,
+      null,
+      this,
+    );
 
     if (this.keyboard.D.isDown === true) {
       this.man.setVelocityX(128);
-      angle = 'right';
+      this.angle = 'right';
     }
 
     if (this.keyboard.A.isDown === true) {
       this.man.setVelocityX(-128);
-      angle = 'left';
+      this.angle = 'left';
     }
 
     if (this.keyboard.W.isDown === true) {
       this.man.setVelocityY(-128);
-      angle = 'up';
+      this.angle = 'up';
     }
 
     if (this.keyboard.S.isDown === true) {
       this.man.setVelocityY(128);
-      angle = 'down';
+      this.angle = 'down';
     }
 
     if (this.keyboard.A.isUp && this.keyboard.D.isUp) {
@@ -152,23 +152,23 @@ export default class GameScene extends Phaser.Scene {
       this.man.play('down', true);
     }
 
-    if (this.keyboard.SPACE.isDown) {
-      this.shootBeam(angle);
+    if (Phaser.Input.Keyboard.JustDown(this.keyboard.SPACE)) {
+      this.shootBeam(this.angle);
     }
 
     for (let i = 0; i < this.projectiles.getChildren().length; i += 1) {
       const beam = this.projectiles.getChildren()[i];
-      beam.update();
+      beam.update(this);
     }
   }
 
   restoreHealth(man, obj) {
-    this.man.hp += 5;
+    this.man.hp += obj.properties[0].value;
     console.log(this.man.hp);
     obj.destroy();
   }
 
   shootBeam(angle) {
-    const beam = new Beam(this, angle);
+    const beam = new Beam(this);
   }
 }

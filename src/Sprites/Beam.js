@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
 export default class Beam extends Phaser.GameObjects.Sprite {
-  constructor(scene, angle) {
+  constructor(scene) {
     const x = scene.man.x;
     const y = scene.man.y;
 
@@ -14,21 +14,21 @@ export default class Beam extends Phaser.GameObjects.Sprite {
 
     this.rotation = 90;
 
-    if (angle === 'right') {
+    if (scene.angle === 'right') {
       this.body.velocity.x = 250;
-    } else if (angle === 'left') {
+    } else if (scene.angle === 'left') {
       this.body.velocity.x = -250;
-    } else if (angle === 'up') {
+    } else if (scene.angle === 'up') {
       this.body.velocity.y = -250;
-    } else if (angle === 'down') {
+    } else if (scene.angle === 'down') {
       this.body.velocity.y = 250;
     }
 
     scene.projectiles.add(this);
   }
 
-  update() {
-    if (this.x < 32) {
+  update(scene) {
+    if (!scene.cameras.main.worldView.contains(this.x, this.y)) {
       this.destroy();
     }
   }
