@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import PlayerSprite from '../Sprites/PlayerSprite';
 import Beam from '../Sprites/Beam';
+import Virus from '../Objects/Virus';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -51,6 +52,8 @@ export default class GameScene extends Phaser.Scene {
       frameWidth: 16,
       frameHeight: 16,
     });
+
+    this.load.image('virus', '../src/assets/images/coronavirus.png');
   }
 
   create() {
@@ -103,6 +106,14 @@ export default class GameScene extends Phaser.Scene {
       frameRate: 20,
       repeat: -1,
     });
+
+    this.virus = new Virus(
+      this,
+      world.widthInPixels,
+      Phaser.Math.Between(0, world.heightInPixels),
+      'virus',
+      0,
+    );
   }
 
   update(time, delta) {
