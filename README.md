@@ -8,7 +8,7 @@
 <br />
 <p align="center">
   <a href="git@github.com:alishabab/bheem-rpg.git">
-    <p align="center"> <img src="https://media.giphy.com/media/QuUKepaJc6Ho5ryIYh/giphy.gif" alt="Bheem RPG" width="600" height="400"> </p>
+    <p align="center"> <img src="https://giphy.com/gifs/QuUKepaJc6Ho5ryIYh" alt="Suriva Noroc RPG" width="600" height="400"> </p>
   </a>
 
   <h2 align="center">Suriva Noroc RPG Game</h2>
