@@ -28,24 +28,35 @@ export default class GameOverScene extends Phaser.Scene {
 
     this.homeButton = new Button(
       this,
-      game.config.width / 2,
-      game.config.height - 100,
+      game.config.width * 0.25,
+      game.config.height * 0.8,
       'yellowButton',
       'yellowButton',
       'Menu',
       100,
       'Title',
-    ).setScale(0.2);
+    ).setScale(0.15);
 
     this.restartButton = new Button(
       this,
-      game.config.width / 2,
-      game.config.height - 20,
+      game.config.width * 0.5,
+      game.config.height * 0.8,
       'yellowButton',
       'yellowButton',
       'Restart',
       100,
       'Game',
-    ).setScale(0.2);
+    ).setScale(0.15);
+
+    this.leaderboard = new Button(
+      this,
+      game.config.width * 0.75,
+      game.config.height * 0.8,
+      'yellowButton',
+      'yellowButton',
+      'Submit Score',
+      100,
+      'Leaderboard',
+    ).setScale(0.15);
   }
 }

@@ -19,7 +19,7 @@ export default class TitleScene extends Phaser.Scene {
       'yellowButton',
       'Play',
       100,
-      'Game',
+      'Instruction',
     ).setScale(0.2);
 
     // Options
@@ -34,11 +34,22 @@ export default class TitleScene extends Phaser.Scene {
       'Options',
     ).setScale(0.2);
 
+    this.leaderboardButton = new Button(
+      this,
+      config.width / 2,
+      config.height / 2 + 140,
+      'yellowButton',
+      'yellowButton',
+      'Leaderboard',
+      100,
+      'Leaderboard',
+    ).setScale(0.2);
+
     // Credits
     this.creditsButton = new Button(
       this,
       config.width / 2,
-      config.height / 2 + 140,
+      config.height / 2 + 240,
       'yellowButton',
       'yellowButton',
       'Credits',
