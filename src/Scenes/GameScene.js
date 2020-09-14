@@ -55,6 +55,12 @@ export default class GameScene extends Phaser.Scene {
     });
 
     this.load.image('virus', '../src/assets/images/coronavirus.png');
+
+    this.load.bitmapFont(
+      'pixelFont',
+      '../src/assets/font/font.png',
+      '../src/assets/font/font.xml',
+    );
   }
 
   create() {
@@ -134,6 +140,31 @@ export default class GameScene extends Phaser.Scene {
       null,
       this,
     );
+
+    const graphics = this.add.graphics();
+    graphics.fillStyle(0x000000, 1);
+    graphics.beginPath();
+    graphics.moveTo(0, 0);
+    graphics.lineTo(world.widthInPixels, 0);
+    graphics.lineTo(world.widthInPixels, 50);
+    graphics.lineTo(0, 50);
+    graphics.lineTo(0, 0);
+    graphics.lineTo(0, 0);
+    graphics.lineTo(0, 50);
+    graphics.lineTo(0, 50);
+    graphics.lineTo(0, 0);
+    //
+    graphics.closePath();
+    graphics.fillPath();
+
+    this.scoreLabel = this.add.bitmapText(10, 5, 'pixelFont', 'SCORE ', 64);
+    this.healthLabel = this.add.bitmapText(
+      game.config.width - 10,
+      5,
+      'pixelFont',
+      'HEALTH ',
+      64,
+    );
   }
 
   update(time, delta) {
@@ -195,7 +226,7 @@ export default class GameScene extends Phaser.Scene {
 
   restoreHealth(man, obj) {
     this.man.hp += obj.properties[0].value;
-    console.log(this.man.hp);
+    this.healthLabel.text = `HEALTH: ${this.man.hp}`;
     obj.destroy();
   }
 
@@ -207,11 +238,11 @@ export default class GameScene extends Phaser.Scene {
     projectile.destroy();
     virus.destroy();
     this.score += 5;
-    console.log(this.score);
+    this.scoreLabel.text = `SCORE: ${this.score}`;
   }
 
   hurtMan(man, virus) {
     this.man.hp -= 15;
-    console.log(this.man.hp);
+    this.healthLabel.text = `HEALTH: ${this.man.hp}`;
   }
 }
