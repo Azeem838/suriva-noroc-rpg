@@ -1,55 +1,112 @@
-# Phaser 3 Webpack Project Template
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 
-A Phaser 3 project template with ES6 support via [Babel 7](https://babeljs.io/) and [Webpack 4](https://webpack.js.org/)
-that includes hot-reloading for development and production-ready builds.
+<!-- PROJECT LOGO -->
 
-Loading images via JavaScript module `import` is also supported.
+<br />
+<p align="center">
+  <a href="git@github.com:alishabab/bheem-rpg.git">
+    <p align="center"> <img src="https://media.giphy.com/media/QuUKepaJc6Ho5ryIYh/giphy.gif" alt="Bheem RPG" width="600" height="400"> </p>
+  </a>
 
-## Requirements
+  <h2 align="center">Suriva Noroc RPG Game</h2>
+  <h3 align="center">Built with JavaScript using the Phaser 3 Library</h3>
 
-[Node.js](https://nodejs.org) is required to install dependencies and run scripts via `npm`.
+  <p align="center">
+    <a href="https://github.com/Azeem838/suriva-noroc-rpg/issues">Report Bug</a>
+    · 
+    <a href="https://github.com/Azeem838/suriva-noroc-rpg/issues">Request Feature</a>
+  </p>
+</p>
 
-## Available Commands
+<!-- TABLE OF CONTENTS -->
 
-| Command | Description |
-|---------|-------------|
-| `npm install` | Install project dependencies |
-| `npm start` | Build project and open web server running project |
-| `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
+## Table of Contents
 
-## Writing Code
+- [About the Project](#about-the-project)
+- [Installation](#installation)
+- [Control's](#CONTROL'S)
+- [Live Link](#Live-Link)
+- [Built With](#built-with)
+- [Potential Future Updates](#potential-future-updates)
+- [Contact](#Authors)
+- [Acknowledgements](#acknowledgements)
 
-After cloning the repo, run `npm install` from your project directory. Then, you can start the local development
-server by running `npm start`.
+<!-- ABOUT THE PROJECT -->
 
+## About The Project
 
-After starting the development server with `npm start`, you can edit any files in the `src` folder
-and webpack will automatically recompile and reload your server (available at `http://localhost:8080`
-by default).
+Welcome to the Suriva Noroc RPG Game. This game is inspired by the events that are taking place throughout the world. You will be a doctor trying to kill the Suriva Noroc virus!
 
-## Customizing Template
+This game has many waves, try to get the highest score to beat the virus!
 
-### Babel
-You can write modern ES6+ JavaScript and Babel will transpile it to a version of JavaScript that you
-want your project to support. The targeted browsers are set in the `.babelrc` file and the default currently
-targets all browsers with total usage over "0.25%" but excludes IE11 and Opera Mini.
+Hint: Don't waste the Mushrooms!
 
-  ```
-  "browsers": [
-    ">0.25%",
-    "not ie 11",
-    "not op_mini all"
-  ]
-  ```
+<!-- CONTROL'S -->
 
-### Webpack
-If you want to customize your build, such as adding a new webpack loader or plugin (i.e. for loading CSS or fonts), you can
-modify the `webpack/base.js` file for cross-project changes, or you can modify and/or create
-new configuration files and target them in specific npm tasks inside of `package.json'.
+## How to play
 
-## Deploying Code
-After you run the `npm run build` command, your code will be built into a single bundle located at 
-`dist/bundle.min.js` along with any other assets you project depended. 
+### Controls
 
-If you put the contents of the `dist` folder in a publicly-accessible location (say something like `http://mycoolserver.com`), 
-you should be able to open `http://mycoolserver.com/index.html` and play your game.
+- (A) letter A => Move left
+- (D) letter D => Move right
+- (W) letter W => Move up
+- (S) letter S => Move down
+- (Space) SpaceBar => Shoot
+
+<!-- Live Link  -->
+
+## Live Link
+
+[Click here]()
+
+<!-- INSTALLATION -->
+
+## Installation
+
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+Have a browser installed
+
+### Setup
+
+Clone this repo with <code>git@github.com:Azeem838/suriva-noroc-rpg.git</code>
+
+### Usage - Follow these
+
+1. <code>cd</code> into the project directory
+2. run <code>npm install</code>
+3. run <code>npm install</code>
+4. Navigate to [localhost:8000](http://localhost:8000) in your browser.
+5. Enjoy :smiley:
+
+<!-- BUILD WITH -->
+
+## Built With
+
+- HTML/CSS
+- JavaScript (ES6)
+- Phaser 3
+- Webpack
+- Eslint
+- Stylelint
+- Jest for testing
+
+## Authors
+
+:bust_in_silhouette: **Azeem Ahmed**
+
+- Github: [@Azeem838](https://github.com/Azeem838)
+- LinkedIn: [Azeem Ahmed](www.linkedin.com/in/azeemmahmed)
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## 📝 License
+
+This project is [MIT](https://opensource.org/licenses/MIT) licensed.

@@ -1,7 +1,7 @@
 {
-  "name": "phaser3-project-template",
+  "name": "suriva-noroc-rpg",
   "version": "1.1.0",
-  "description": "A Phaser 3 Project Template",
+  "description": "A RPG Game",
   "main": "src/index.js",
   "scripts": {
     "build": "webpack",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/photonstorm/phaser3-project-template.git"
+    "url": "git+https://github.com/Azeem838/suriva-noroc-rpg.git"
   },
-  "author": "Richard Davey <rdavey@gmail.com> (http://www.photonstorm.com)",
+  "author": "Azeem Ahmed <azeemahmed101@gmail.com> (http://www.azeemahmed.me)",
   "license": "MIT",
   "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
   "bugs": {
-    "url": "https://github.com/photonstorm/phaser3-project-template/issues"
+    "url": "https://github.com/Azeem838/suriva-noroc-rpg/issues"
   },
-  "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
+  "homepage": "https://github.com/Azeem838/suriva-noroc-rpg",
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
