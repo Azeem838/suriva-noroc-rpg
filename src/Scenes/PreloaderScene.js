@@ -77,14 +77,14 @@ export default class PreloaderScene extends Phaser.Scene {
 
     this.timedEvent = this.time.delayedCall(3000, this.ready, [], this);
 
-    this.load.image('yellowButton', '../assets/ui/yellow-button2.png');
-    this.load.image('leaderboard', '../assets/ui/leaderboard.png');
-    this.load.image('pause', '../assets/ui/pause.png');
-    this.load.image('play', '../assets/ui/play-now.png');
-    this.load.image('settings', '../assets/ui/settings.png');
-    this.load.audio('bgMusic', ['../assets/audio/TownTheme.mp3']);
+    this.load.image('yellowButton', './assets/ui/yellow-button2.png');
+    this.load.image('leaderboard', './assets/ui/leaderboard.png');
+    this.load.image('pause', './assets/ui/pause.png');
+    this.load.image('play', './assets/ui/play-now.png');
+    this.load.image('settings', './assets/ui/settings.png');
+    this.load.audio('bgMusic', ['./assets/audio/TownTheme.mp3']);
 
-    this.load.spritesheet('man', '../assets/spritesheets/old-man.png', {
+    this.load.spritesheet('man', './assets/spritesheets/old-man.png', {
       frameWidth: 256,
       frameHeight: 256,
     });

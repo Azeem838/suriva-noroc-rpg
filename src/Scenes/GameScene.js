@@ -46,23 +46,23 @@ export default class GameScene extends Phaser.Scene {
       }),
     });
 
-    this.load.image('terrain', '../assets/images/terrain-atlas.png');
-    this.load.image('items', '../assets/images/items.png');
-    this.load.image('mushroom', '../assets/images/mushroom.png');
+    this.load.image('terrain', './assets/images/terrain-atlas.png');
+    this.load.image('items', './assets/images/items.png');
+    this.load.image('mushroom', './assets/images/mushroom.png');
 
-    this.load.tilemapTiledJSON('world', '../assets/maps/world.json');
+    this.load.tilemapTiledJSON('world', './assets/maps/world.json');
 
-    this.load.spritesheet('beam', '../assets/spritesheets/beam.png', {
+    this.load.spritesheet('beam', './assets/spritesheets/beam.png', {
       frameWidth: 16,
       frameHeight: 16,
     });
 
-    this.load.image('virus', '../assets/images/coronavirus.png');
+    this.load.image('virus', './assets/images/coronavirus.png');
 
     this.load.bitmapFont(
       'pixelFont',
-      '../assets/font/font.png',
-      '../assets/font/font.xml',
+      './assets/font/font.png',
+      './assets/font/font.xml',
     );
   }
 
