@@ -7,6 +7,7 @@ export default class GameScene extends Phaser.Scene {
   constructor() {
     super('Game');
     this.angle = 'down';
+    this.score = 0;
   }
 
   preload() {
@@ -117,6 +118,22 @@ export default class GameScene extends Phaser.Scene {
         0,
       );
     }
+
+    this.physics.add.overlap(
+      this.projectiles,
+      this.virusGroup,
+      this.shootVirus,
+      null,
+      this,
+    );
+
+    this.physics.add.overlap(
+      this.man,
+      this.virusGroup,
+      this.hurtMan,
+      null,
+      this,
+    );
   }
 
   update(time, delta) {
@@ -184,5 +201,17 @@ export default class GameScene extends Phaser.Scene {
 
   shootBeam(angle) {
     const beam = new Beam(this);
+  }
+
+  shootVirus(projectile, virus) {
+    projectile.destroy();
+    virus.destroy();
+    this.score += 5;
+    console.log(this.score);
+  }
+
+  hurtMan(man, virus) {
+    this.man.hp -= 15;
+    console.log(this.man.hp);
   }
 }
