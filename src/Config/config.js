@@ -14,6 +14,10 @@ export default {
     pixelArt: true,
   },
 
+  dom: {
+    createContainer: true,
+  },
+
   physics: {
     default: 'arcade',
     arcade: {

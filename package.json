@@ -38,6 +38,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "core-js": "^3.6.5",
     "phaser": "^3.24.1"
   }
 }

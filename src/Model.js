@@ -28,4 +28,20 @@ export default class Model {
   get bgMusicPlaying() {
     return this._bgMusicPlaying;
   }
+
+  set score(value) {
+    this._score = value;
+  }
+
+  get score() {
+    return this._score;
+  }
+
+  set user(value) {
+    this._user = value;
+  }
+
+  get user() {
+    return this._user;
+  }
 }

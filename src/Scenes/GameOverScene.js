@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import Button from '../Objects/Button';
+import { postScore } from '../scoreAPI/scoreAPI';
 
 export default class GameOverScene extends Phaser.Scene {
   constructor() {
@@ -7,6 +8,7 @@ export default class GameOverScene extends Phaser.Scene {
   }
 
   init(data) {
+    this.model = this.sys.game.globals.model;
     this.score = data.score;
   }
 
@@ -56,6 +58,8 @@ export default class GameOverScene extends Phaser.Scene {
       100,
       'Game',
     ).setScale(0.15);
+
+    postScore(this.model.user, this.score);
 
     this.leaderboard = new Button(
       this,

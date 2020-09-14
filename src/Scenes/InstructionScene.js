@@ -41,14 +41,14 @@ export default class InstructionScene extends Phaser.Scene {
       backgroundColor: '#fff',
       border: '1px solid white',
     });
-    input.scaleX = 5;
-    input.scaleY = 5;
+    input.scaleX = 0.4;
+    input.scaleY = 0.6;
 
     const style =
       'background: url(../src/assets/ui/yellow-button2.png); border: none; border-radius: 5px; color: #fff;';
     const gameButton = this.add.dom(600, 412, 'button', style, 'Play');
-    gameButton.scaleX = 5;
-    gameButton.scaleY = 5;
+    gameButton.scaleX = 1.5;
+    gameButton.scaleY = 1.5;
     gameButton.addListener('click');
 
     gameButton.on('click', () => {
