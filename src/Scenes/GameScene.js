@@ -141,6 +141,9 @@ export default class GameScene extends Phaser.Scene {
     this.healthLabel = this.add
       .bitmapText(10, 50, 'pixelFont', 'HEALTH: 100/100', 40)
       .setScrollFactor(0, 0);
+    this.waveLabel = this.add
+      .bitmapText(10, 95, 'pixelFont', 'WAVE: 1', 40)
+      .setScrollFactor(0, 0);
   }
 
   update(time, delta) {
@@ -200,8 +203,11 @@ export default class GameScene extends Phaser.Scene {
     }
 
     if (this.virusAmount === 0) {
-      this.spawnVirus(10);
+      this.spawnVirus(this.currentWave * 10);
       this.currentWave += 1;
+      this.man.x = 100;
+      this.man.y = 100;
+      this.waveLabel.text = `WAVE: ${this.currentWave}`;
     }
   }
 
@@ -240,7 +246,7 @@ export default class GameScene extends Phaser.Scene {
       callbackScope: this,
     });
     man.alpha = 0.5;
-    this.man.hp -= 10;
+    this.man.hp -= 50;
 
     if (man.hp < 1) {
       this.gameOver();

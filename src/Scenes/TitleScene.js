@@ -19,7 +19,7 @@ export default class TitleScene extends Phaser.Scene {
       'yellowButton',
       'Play',
       100,
-      'Instruction',
+      'Game',
     ).setScale(0.2);
 
     // Options
