@@ -52,7 +52,7 @@ Hint: Don't waste the Mushrooms!
 
 ## Live Link
 
-[Click here]()
+[Click here](http://azeemahmed.me/suriva-noroc-rpg/)
 
 <!-- INSTALLATION -->
 
