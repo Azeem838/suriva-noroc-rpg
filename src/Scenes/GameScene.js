@@ -8,6 +8,8 @@ export default class GameScene extends Phaser.Scene {
     super('Game');
     this.angle = 'down';
     this.score = 0;
+    this.currentWave = 1;
+    this.virusAmount = 0;
   }
 
   preload() {
@@ -115,15 +117,7 @@ export default class GameScene extends Phaser.Scene {
     });
 
     this.virusGroup = this.add.group();
-    for (let i = 0; i < 10; i += 1) {
-      this.virus = new Virus(
-        this,
-        game.config.width,
-        Phaser.Math.Between(0, game.config.height),
-        'virus',
-        0,
-      );
-    }
+    this.spawnVirus(10);
 
     this.physics.add.overlap(
       this.projectiles,
@@ -141,30 +135,12 @@ export default class GameScene extends Phaser.Scene {
       this,
     );
 
-    const graphics = this.add.graphics();
-    graphics.fillStyle(0x000000, 1);
-    graphics.beginPath();
-    graphics.moveTo(0, 0);
-    graphics.lineTo(world.widthInPixels, 0);
-    graphics.lineTo(world.widthInPixels, 50);
-    graphics.lineTo(0, 50);
-    graphics.lineTo(0, 0);
-    graphics.lineTo(0, 0);
-    graphics.lineTo(0, 50);
-    graphics.lineTo(0, 50);
-    graphics.lineTo(0, 0);
-    //
-    graphics.closePath();
-    graphics.fillPath();
-
-    this.scoreLabel = this.add.bitmapText(10, 5, 'pixelFont', 'SCORE ', 64);
-    this.healthLabel = this.add.bitmapText(
-      game.config.width - 10,
-      5,
-      'pixelFont',
-      'HEALTH ',
-      64,
-    );
+    this.scoreLabel = this.add
+      .bitmapText(10, 5, 'pixelFont', 'SCORE ', 40)
+      .setScrollFactor(0, 0);
+    this.healthLabel = this.add
+      .bitmapText(10, 50, 'pixelFont', 'HEALTH ', 40)
+      .setScrollFactor(0, 0);
   }
 
   update(time, delta) {
@@ -222,6 +198,11 @@ export default class GameScene extends Phaser.Scene {
       const beam = this.projectiles.getChildren()[i];
       beam.update(this);
     }
+
+    if (this.virusAmount === 0) {
+      this.spawnVirus(10);
+      this.currentWave += 1;
+    }
   }
 
   restoreHealth(man, obj) {
@@ -239,10 +220,49 @@ export default class GameScene extends Phaser.Scene {
     virus.destroy();
     this.score += 5;
     this.scoreLabel.text = `SCORE: ${this.score}`;
+    this.virusAmount -= 1;
   }
 
   hurtMan(man, virus) {
-    this.man.hp -= 15;
+    if (man.hurt) {
+      return;
+    }
+    man.hurt = true;
+
+    this.time.addEvent({
+      delay: 2000,
+      callback: this.resetHurtTime,
+      callbackScope: this,
+    });
+    man.alpha = 0.5;
+    this.man.hp -= 10;
+
+    if (man.hp < 1) {
+      this.gameOver();
+    }
+
     this.healthLabel.text = `HEALTH: ${this.man.hp}`;
+  }
+
+  resetHurtTime() {
+    this.man.alpha = 1;
+    this.man.hurt = false;
+  }
+
+  gameOver() {
+    console.log('Game Over');
+  }
+
+  spawnVirus(amount) {
+    for (let i = 0; i < amount; i += 1) {
+      this.virus = new Virus(
+        this,
+        this.physics.world.bounds.width,
+        Phaser.Math.Between(0, this.physics.world.bounds.width - 80),
+        'virus',
+        0,
+      );
+      this.virusAmount += 1;
+    }
   }
 }

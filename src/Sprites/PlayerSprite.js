@@ -9,5 +9,6 @@ export default class PlayerSprite extends Phaser.Physics.Arcade.Sprite {
 
     scene.physics.world.enableBody(this);
     this.hp = 100;
+    this.hurt = false;
   }
 }
