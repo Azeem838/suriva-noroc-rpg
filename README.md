@@ -1,14 +1,6 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-
-<!-- PROJECT LOGO -->
-
-<br />
 <p align="center">
-  <a href="git@github.com:alishabab/bheem-rpg.git">
-    <p align="center"> <img src="https://giphy.com/gifs/QuUKepaJc6Ho5ryIYh" alt="Suriva Noroc RPG" width="600" height="400"> </p>
+  <a>
+    <p align="center"> <img src="./suriva-noroc-gameplay.gif" alt="Suriva Noroc RPG" width="600" height="400"> </p>
   </a>
 
   <h2 align="center">Suriva Noroc RPG Game</h2>
