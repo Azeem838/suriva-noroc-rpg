@@ -43,7 +43,6 @@ export default class InstructionScene extends Phaser.Scene {
     });
     input.scaleX = 5;
     input.scaleY = 5;
-    console.log(this.dom);
 
     const style =
       'background: url(../src/assets/ui/yellow-button2.png); border: none; border-radius: 5px; color: #fff;';

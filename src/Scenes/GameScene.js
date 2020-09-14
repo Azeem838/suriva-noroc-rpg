@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import PlayerSprite from '../Sprites/PlayerSprite';
 import Beam from '../Sprites/Beam';
 import Virus from '../Objects/Virus';
+import Mushroom from '../Objects/Mushroom';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -66,87 +67,17 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
-    this.man = new PlayerSprite(this, 100, 100, 'man', 0);
-    this.man.setSize(150, 210).setOffset(50, 20);
-    this.man.setCollideWorldBounds(true);
-
+    this.setMan();
     this.keyboard = this.input.keyboard.addKeys('W, A, S, D, SPACE');
-
-    const world = this.add.tilemap('world');
-
-    const terrain = world.addTilesetImage('terrain-atlas', 'terrain');
-    const itemset = world.addTilesetImage('items');
-
-    const botLayer = world
-      .createStaticLayer('bot', [terrain], 0, 0)
-      .setDepth(-1);
-    const topLayer = world.createStaticLayer('top', [terrain], 0, 0);
-
-    this.physics.add.collider(this.man, topLayer);
-    topLayer.setCollisionByProperty({ collides: true });
-
-    const objLayer = world.getObjectLayer('items').objects;
-    const mushroomLayer = objLayer.filter(
-      (obj) => obj.gid === 1019 && obj.properties,
-    );
-
-    this.mushrooms = this.physics.add.staticGroup();
-
-    mushroomLayer.forEach((object) => {
-      const obj = this.mushrooms.create(object.x, object.y, 'mushroom');
-      obj.properties = object.properties;
-      obj.body.width = object.width;
-      obj.body.height = object.height;
-    });
-
-    this.cameras.main.startFollow(this.man);
-    this.physics.world.setBounds(
-      0,
-      0,
-      world.widthInPixels,
-      world.heightInPixels,
-    );
-
-    this.projectiles = this.add.group();
-
-    this.anims.create({
-      key: 'beam',
-      frames: this.anims.generateFrameNumbers('beam'),
-      frameRate: 20,
-      repeat: -1,
-    });
-
-    this.virusGroup = this.add.group();
-    this.spawnVirus(10);
-
-    this.physics.add.overlap(
-      this.projectiles,
-      this.virusGroup,
-      this.shootVirus,
-      null,
-      this,
-    );
-
-    this.physics.add.overlap(
-      this.man,
-      this.virusGroup,
-      this.hurtMan,
-      null,
-      this,
-    );
-
-    this.scoreLabel = this.add
-      .bitmapText(10, 5, 'pixelFont', 'SCORE: 0', 40)
-      .setScrollFactor(0, 0);
-    this.healthLabel = this.add
-      .bitmapText(10, 50, 'pixelFont', 'HEALTH: 100/100', 40)
-      .setScrollFactor(0, 0);
-    this.waveLabel = this.add
-      .bitmapText(10, 95, 'pixelFont', 'WAVE: 1', 40)
-      .setScrollFactor(0, 0);
+    this.setEnvironment();
+    this.setMushrooms();
+    this.setColliders();
+    this.setProjectiles();
+    this.setVirus();
+    this.setLabels();
   }
 
-  update(time, delta) {
+  update() {
     this.physics.overlap(
       this.man,
       this.mushrooms,
@@ -211,6 +142,99 @@ export default class GameScene extends Phaser.Scene {
     }
   }
 
+  setMan() {
+    this.man = new PlayerSprite(this, 100, 100, 'man', 0);
+    this.man.setSize(150, 210).setOffset(50, 20);
+    this.man.setCollideWorldBounds(true);
+    this.cameras.main.startFollow(this.man);
+  }
+
+  setEnvironment() {
+    this.world = this.add.tilemap('world');
+    const terrain = this.world.addTilesetImage('terrain-atlas', 'terrain');
+    this.world.addTilesetImage('items');
+
+    this.world.createStaticLayer('bot', [terrain], 0, 0).setDepth(-1);
+    this.topLayer = this.world.createStaticLayer('top', [terrain], 0, 0);
+
+    this.objLayer = this.world.getObjectLayer('items').objects;
+
+    this.physics.world.setBounds(
+      0,
+      0,
+      this.world.widthInPixels,
+      this.world.heightInPixels,
+    );
+  }
+
+  setMushrooms() {
+    this.mushroomLayer = this.objLayer.filter(
+      (obj) => obj.gid === 1019 && obj.properties,
+    );
+
+    this.mushrooms = this.physics.add.staticGroup();
+
+    this.mushroomLayer.forEach((object) => {
+      this.mushroom = new Mushroom(
+        this,
+        object.x,
+        object.y,
+        'mushroom',
+        0,
+        object,
+      );
+    });
+  }
+
+  setProjectiles() {
+    this.projectiles = this.add.group();
+
+    this.anims.create({
+      key: 'beam',
+      frames: this.anims.generateFrameNumbers('beam'),
+      frameRate: 20,
+      repeat: -1,
+    });
+  }
+
+  setVirus() {
+    this.virusGroup = this.add.group();
+    this.spawnVirus(10);
+
+    this.physics.add.overlap(
+      this.projectiles,
+      this.virusGroup,
+      this.shootVirus,
+      null,
+      this,
+    );
+
+    this.physics.add.overlap(
+      this.man,
+      this.virusGroup,
+      this.hurtMan,
+      null,
+      this,
+    );
+  }
+
+  setLabels() {
+    this.scoreLabel = this.add
+      .bitmapText(10, 5, 'pixelFont', 'SCORE: 0', 40)
+      .setScrollFactor(0, 0);
+    this.healthLabel = this.add
+      .bitmapText(10, 50, 'pixelFont', 'HEALTH: 100/100', 40)
+      .setScrollFactor(0, 0);
+    this.waveLabel = this.add
+      .bitmapText(10, 95, 'pixelFont', 'WAVE: 1', 40)
+      .setScrollFactor(0, 0);
+  }
+
+  setColliders() {
+    this.physics.add.collider(this.man, this.topLayer);
+    this.topLayer.setCollisionByProperty({ collides: true });
+  }
+
   restoreHealth(man, obj) {
     if (man.hp + obj.properties[0].value >= 100) {
       this.man.hp = 100;
@@ -222,8 +246,8 @@ export default class GameScene extends Phaser.Scene {
     obj.destroy();
   }
 
-  shootBeam(angle) {
-    const beam = new Beam(this);
+  shootBeam() {
+    this.beam = new Beam(this);
   }
 
   shootVirus(projectile, virus) {
@@ -234,7 +258,7 @@ export default class GameScene extends Phaser.Scene {
     this.virusAmount -= 1;
   }
 
-  hurtMan(man, virus) {
+  hurtMan(man) {
     if (man.hurt) {
       return;
     }

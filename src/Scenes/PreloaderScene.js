@@ -62,7 +62,7 @@ export default class PreloaderScene extends Phaser.Scene {
 
     // update file progress text
     this.load.on('fileprogress', function (file) {
-      assetText.setText('Loading asset: ' + file.key);
+      assetText.setText(`Loading asset: ${file.key}`);
     });
 
     // remove progress bar when complete
@@ -98,7 +98,6 @@ export default class PreloaderScene extends Phaser.Scene {
     this.scene.start('Title');
     if (this.ready.count === 2) {
       this.scene.start('Title');
-      console.log('preload');
     }
   }
 }
