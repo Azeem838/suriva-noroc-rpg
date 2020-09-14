@@ -6,6 +6,10 @@ export default class GameOverScene extends Phaser.Scene {
     super('GameOver');
   }
 
+  init(data) {
+    this.score = data.score;
+  }
+
   create() {
     this.add.image(game.config.width / 2, 100, 'logo');
 
@@ -18,13 +22,18 @@ export default class GameOverScene extends Phaser.Scene {
       align: 'center',
     });
 
-    this.add.text(game.config.width / 2 - 200, 300, 'Your score:', {
-      fontFamily: 'monospace',
-      fontSize: 20,
-      fontStyle: 'bold',
-      color: '#ffb132',
-      align: 'center',
-    });
+    this.add.text(
+      game.config.width / 2 - 200,
+      300,
+      `Your score: ${this.score}`,
+      {
+        fontFamily: 'monospace',
+        fontSize: 20,
+        fontStyle: 'bold',
+        color: '#ffb132',
+        align: 'center',
+      },
+    );
 
     this.homeButton = new Button(
       this,

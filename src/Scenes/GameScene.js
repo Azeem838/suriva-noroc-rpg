@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
 import PlayerSprite from '../Sprites/PlayerSprite';
 import Beam from '../Sprites/Beam';
-import Virus from '../Objects/Virus';
-import Mushroom from '../Objects/Mushroom';
+import Virus from '../Sprites/Virus';
+import Mushroom from '../Sprites/Mushroom';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -285,7 +285,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   gameOver() {
-    this.scene.start('GameOver');
+    this.scene.start('GameOver', { score: this.score });
   }
 
   spawnVirus(amount) {
