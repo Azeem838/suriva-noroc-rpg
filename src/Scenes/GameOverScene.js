@@ -13,10 +13,10 @@ export default class GameOverScene extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(game.config.width / 2, 100, 'logo');
+    this.add.image(this.game.config.width / 2, 100, 'logo');
 
     // const { user } = this.sys.game.globals.model;
-    this.add.text(game.config.width / 2 - 200, 200, 'Game Over', {
+    this.add.text(this.game.config.width / 2 - 200, 200, 'Game Over', {
       fontFamily: 'monospace',
       fontSize: 40,
       fontStyle: 'bold',
@@ -25,7 +25,7 @@ export default class GameOverScene extends Phaser.Scene {
     });
 
     this.add.text(
-      game.config.width / 2 - 200,
+      this.game.config.width / 2 - 200,
       300,
       `Your score: ${this.score}`,
       {
@@ -39,8 +39,8 @@ export default class GameOverScene extends Phaser.Scene {
 
     this.homeButton = new Button(
       this,
-      game.config.width * 0.25,
-      game.config.height * 0.8,
+      this.game.config.width * 0.25,
+      this.game.config.height * 0.8,
       'yellowButton',
       'yellowButton',
       'Menu',
@@ -50,8 +50,8 @@ export default class GameOverScene extends Phaser.Scene {
 
     this.restartButton = new Button(
       this,
-      game.config.width * 0.5,
-      game.config.height * 0.8,
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.8,
       'yellowButton',
       'yellowButton',
       'Restart',
@@ -63,8 +63,8 @@ export default class GameOverScene extends Phaser.Scene {
 
     this.leaderboard = new Button(
       this,
-      game.config.width * 0.75,
-      game.config.height * 0.8,
+      this.game.config.width * 0.75,
+      this.game.config.height * 0.8,
       'yellowButton',
       'yellowButton',
       'Submit Score',

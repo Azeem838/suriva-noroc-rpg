@@ -38,8 +38,8 @@ export default class LeaderboardScene extends Phaser.Scene {
 
     this.gameButton = new Button(
       this,
-      game.config.width * 0.25,
-      game.config.height * 0.8,
+      this.game.config.width * 0.25,
+      this.game.config.height * 0.8,
       'yellowButton',
       'yellowButton',
       'Play',
@@ -49,8 +49,8 @@ export default class LeaderboardScene extends Phaser.Scene {
 
     this.menuButton = new Button(
       this,
-      game.config.width * 0.75,
-      game.config.height * 0.8,
+      this.game.config.width * 0.75,
+      this.game.config.height * 0.8,
       'yellowButton',
       'yellowButton',
       'Menu',

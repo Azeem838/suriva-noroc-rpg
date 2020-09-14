@@ -2,8 +2,8 @@ import Phaser from 'phaser';
 
 export default class Beam extends Phaser.GameObjects.Sprite {
   constructor(scene) {
-    const x = scene.man.x;
-    const y = scene.man.y;
+    const { x } = scene.man;
+    const { y } = scene.man;
 
     super(scene, x, y, 'beam');
 
