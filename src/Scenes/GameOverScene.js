@@ -15,7 +15,6 @@ export default class GameOverScene extends Phaser.Scene {
   create() {
     this.add.image(this.game.config.width / 2, 100, 'logo');
 
-    // const { user } = this.sys.game.globals.model;
     this.add.text(this.game.config.width / 2 - 200, 200, 'Game Over', {
       fontFamily: 'monospace',
       fontSize: 40,
