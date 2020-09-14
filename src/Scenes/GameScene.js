@@ -136,10 +136,10 @@ export default class GameScene extends Phaser.Scene {
     );
 
     this.scoreLabel = this.add
-      .bitmapText(10, 5, 'pixelFont', 'SCORE ', 40)
+      .bitmapText(10, 5, 'pixelFont', 'SCORE: 0', 40)
       .setScrollFactor(0, 0);
     this.healthLabel = this.add
-      .bitmapText(10, 50, 'pixelFont', 'HEALTH ', 40)
+      .bitmapText(10, 50, 'pixelFont', 'HEALTH: 100/100', 40)
       .setScrollFactor(0, 0);
   }
 
@@ -206,8 +206,13 @@ export default class GameScene extends Phaser.Scene {
   }
 
   restoreHealth(man, obj) {
-    this.man.hp += obj.properties[0].value;
-    this.healthLabel.text = `HEALTH: ${this.man.hp}`;
+    if (man.hp + obj.properties[0].value >= 100) {
+      this.man.hp = 100;
+    } else {
+      this.man.hp += obj.properties[0].value;
+    }
+
+    this.healthLabel.text = `HEALTH: ${this.man.hp}/100`;
     obj.destroy();
   }
 
@@ -241,7 +246,7 @@ export default class GameScene extends Phaser.Scene {
       this.gameOver();
     }
 
-    this.healthLabel.text = `HEALTH: ${this.man.hp}`;
+    this.healthLabel.text = `HEALTH: ${this.man.hp}/100`;
   }
 
   resetHurtTime() {
@@ -250,7 +255,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   gameOver() {
-    console.log('Game Over');
+    this.scene.start('GameOver');
   }
 
   spawnVirus(amount) {
@@ -258,7 +263,7 @@ export default class GameScene extends Phaser.Scene {
       this.virus = new Virus(
         this,
         this.physics.world.bounds.width,
-        Phaser.Math.Between(0, this.physics.world.bounds.width - 80),
+        Phaser.Math.Between(0, this.physics.world.bounds.width),
         'virus',
         0,
       );

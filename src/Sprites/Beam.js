@@ -12,6 +12,7 @@ export default class Beam extends Phaser.GameObjects.Sprite {
     this.play('beam');
     scene.physics.world.enableBody(this);
 
+    this.setScale(2);
     this.rotation = 90;
 
     if (scene.angle === 'right') {
