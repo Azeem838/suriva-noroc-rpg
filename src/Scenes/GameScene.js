@@ -107,13 +107,16 @@ export default class GameScene extends Phaser.Scene {
       repeat: -1,
     });
 
-    this.virus = new Virus(
-      this,
-      world.widthInPixels,
-      Phaser.Math.Between(0, world.heightInPixels),
-      'virus',
-      0,
-    );
+    this.virusGroup = this.add.group();
+    for (let i = 0; i < 10; i += 1) {
+      this.virus = new Virus(
+        this,
+        game.config.width,
+        Phaser.Math.Between(0, game.config.height),
+        'virus',
+        0,
+      );
+    }
   }
 
   update(time, delta) {

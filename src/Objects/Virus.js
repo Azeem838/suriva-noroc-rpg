@@ -12,9 +12,15 @@ export default class Virus extends Phaser.Physics.Arcade.Sprite {
     scene.physics.world.enableBody(this);
 
     this.setImmovable(false);
-    this.body.velocity.x = -Phaser.Math.Between(50, 100);
     this.setScale(2);
+    this.body.setBounce(1);
     this.setCollideWorldBounds(true);
+
+    scene.virusGroup.add(this);
+
+    this.body.velocity.x = -Phaser.Math.Between(10, 100);
+
+    // this.body.velocity.x = -Phaser.Math.Between(50, 100);
     // this.scene.add.existing(this);
     // this.setOrigin(0);
     // this.setDepth(20);
