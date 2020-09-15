@@ -55,7 +55,7 @@ export default class GameOverScene extends Phaser.Scene {
       'yellowButton',
       'Restart',
       100,
-      'Game',
+      'Instruction',
     ).setScale(0.15);
 
     postScore(this.model.user, this.score);
