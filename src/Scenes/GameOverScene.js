@@ -13,6 +13,8 @@ export default class GameOverScene extends Phaser.Scene {
   }
 
   create() {
+    const gameScene = this.scene.get('Game');
+
     this.add.image(this.game.config.width / 2, 100, 'logo');
 
     this.add.text(this.game.config.width / 2 - 200, 200, 'Game Over', {
@@ -56,6 +58,12 @@ export default class GameOverScene extends Phaser.Scene {
       'Restart',
       100,
       'Instruction',
+      () => {
+        gameScene.angle = 'down';
+        gameScene.score = 0;
+        gameScene.currentWave = 1;
+        gameScene.virusAmount = 0;
+      },
     ).setScale(0.15);
 
     postScore(this.model.user, this.score);
