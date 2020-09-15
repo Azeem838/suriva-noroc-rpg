@@ -72,7 +72,6 @@ Clone this repo with <code>git@github.com:Azeem838/suriva-noroc-rpg.git</code>
 
 1. <code>cd</code> into the project directory
 2. run <code>npm install</code>
-3. run <code>npm install</code>
 4. Navigate to [localhost:8000](http://localhost:8000) in your browser.
 5. Enjoy :smiley:
 
@@ -87,6 +86,37 @@ Clone this repo with <code>git@github.com:Azeem838/suriva-noroc-rpg.git</code>
 - Eslint
 - Stylelint
 - Jest for testing
+- Tiled to create the map
+
+## Game Design
+
+This game has 3 main images that bring it to life:
+
+1. The doctor: 
+
+<p align="center"> <img src="./assets/images/doctor.png" alt="Suriva Noroc doctor"> 
+
+2. The map created in Tiled (A beautiful waterfall and lava area with healing mushrooms :smiley:):
+
+<p align="center"> <img src="./assets/maps/suriva-noroc-map.png" alt="Suriva Noroc map" > 
+
+3. The Suriva Virus:
+
+<p align="center"> <img src="./assets/images/coronavirus.png" alt="Suriva Noroc virus" width="300" height="300"> 
+
+## Game Play
+
+You are a doctor in a weird world where lava and waterfalls exist together in close proximity. There has been an outbreak of the Novel Suriva virus and you have been given the task by your community to kill the virus before it makes its way into town.
+
+You take 100 health and head to the outskirts of your city (where lava meets waterfall) armed with a small laser beam that kills the virus on impact. When you make contact with this virus, you notice that your immune system only fights it off for 2 seconds at a time, however, this strips 50% of your health. You also notice that eating the special mushrooms around you increases your health by varying amounts.
+
+### Objective
+
+This game has 1 object - Kill as much of the Suriva virus as possible. Initially, there will be a few infections but as you get more proficient in killing Suriva, more will come!
+
+Try to get to the highest wave possible and remember that there is a limited supply of special Mushrooms!
+
+Don't forget to post your score to the global leaderboard.
 
 ## Authors
 
