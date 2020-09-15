@@ -286,7 +286,6 @@ export default class GameScene extends Phaser.Scene {
 
   gameOver() {
     this.scene.start('GameOver', { score: this.score });
-    this.scene.destroy();
   }
 
   spawnVirus(amount) {
